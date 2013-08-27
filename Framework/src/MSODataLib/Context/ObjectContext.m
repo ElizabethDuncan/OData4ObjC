@@ -1736,9 +1736,9 @@
 }
 
 /*
- *convert date into proper format
+ *convert date into proper Edm.DateTime format
  *@param <date> date
- *returns date in yyyy-MM-ddTHH:mm:ss.SSSSSSS format
+ *returns date in datetime'yyyy-MM-ddTHH:mm:ss.SSSSSSS' format
  */
 
 -(NSString *) retrieveDate:(NSDate *)date
@@ -1746,7 +1746,7 @@
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"];
-	NSString *dateString = [dateFormatter stringFromDate:date];
+	NSString *dateString = [NSString stringWithFormat:@"datetime'%@'",[dateFormatter stringFromDate:date]];
 	[dateFormatter release];
 	
 	return dateString;
